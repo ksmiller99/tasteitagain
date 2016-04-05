@@ -1,0 +1,37 @@
+KNOWN ISSUES
+BUG 2012-12-18 When changing name of a CATEGORY, if escape is pressed, category name is changed to "" (blank).
+				FIXED ** 2012-12-18 edited javascript function get_name() to return if !name
+
+BUG 2012-12-18 Hidden PRODUCTS appearing on menu
+				FIXED ** 2012-12-18 added WHEN HIDEFLAG=0 clause to query in menu.php, added clause in to query in header.php that build the category list
+					to exclude categories with no visible products
+
+BUG 2012-12-17 Welcome message remains "Guest" after account creation.
+				FIXED ** edited register.php and editAccount.php to save $_SESSION['firstname'] after SQL transaction is commited.
+
+2012-12-17 Business plan To-Do
+Implement Customer account administration via web interface.
+Implement Company information administration via web interface.
+Implement Coupons functionality.
+Implement e-mail news/coupons
+Implement txt msg coupons
+Implement flag for pickcup. Currently delivery is assumed. 
+
+
+BUG: 2012-12-15	category filter is lost when updating cart. menu.php is looking for $_GET['cat'], but form method is $_POST
+				FIXED ** added hidden cat field to form. when page loads, if $_GET['cat'] does not exist, use $_POST['cat']
+
+CONGIGURATION(?): DBMS allows deletion of parent records when child exists. Re created foreign key constraints with ON DELETE RESTRICT 
+several times on CUSTOMERS and ORDERITEMS several times with no change in behaiviour. 
+
+BUG: 2012-12-16 program allows creation of empty orders.
+				FIXED ** "Update Order" and "Create Order" buttons are now hidden if 0 items in cart
+
+BUG: 12/16/12  If you edit your account, even if you dont actually edit anything, clicking the "Save Changes" button causes the PWHash
+			   to be deleted (you can see this by refreshing the USER page in PhPMyAdmin). The account is still there, but you can no
+			   longer log into that account.  This currently happens in /matt and /dev because they are using the same code, just different
+			   layouts.
+			   
+			   FIXED ** editaAccount.php was updating USERS.PWHASH to blank, when that field should only be updated during password change, which
+			   isn't implemented yet. Fixed bug by removing USERS.PWHASH from update query.
+               

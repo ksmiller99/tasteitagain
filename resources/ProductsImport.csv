@@ -1,0 +1,27 @@
+`NAME`, `DESCRIPTION`, `CATID`, `PRICE`, `TAXABLE`, `HIDEFLAG`
+'Brown Stew Chicken','Pan-seared chicken seasoned with allspice and simmered in its own juices.',27,10.50,0,0
+'Chicken Roti','Tender chunks of curried chicken with potatoes wrapped in Dhalpuri roti skin.',27,7.50,0,0
+'Oxtail','Tender pieces of oxtail stewed with herbs, spices, and butter beans.',26,12.00,0,0
+'Stewed Beef','Tender chunks of beef stewed with carrot and potatoes.',26,11.00,0,0
+'Stew Peas w/Beef','Red Kidney beans stewed with herbs and spices and beef chunks.',26,10.50,0,0
+'Curried Goat (Spicy)','Tender goat meat simmered in curry sauce with potatoes',25,12.00,0,0
+'Curried Goat (Mild)','Tender goat meat simmered in curry sauce with potatoes',25,12.00,0,0
+'Goat Roti','Tender chunks of curried goat with potatoes wrapped in Dhalpuri roti skin.',25,9.00,0,0
+'Jerk Pork (Spicy)','Pork rubbed with a spicy Jamaican jerk seasoning. ',24,10.50,0,0
+'Jerk Pork (Mild)','Pork rubbed with a spicy Jamaican jerk seasoning. ',24,10.50,0,0
+'Ackee and Sailfish - Jamaica's National Dish','Boiled and shredded salted cod seasoned with onions, tomatoes, black pepper and other island spices and then simmered livith Ackee, Jamaica's National Fruit.',22,13.00,0,0
+'Brown Stew Snapper','A whole or filet snapper, crisply pan-fried, then simmered in its own gravy with onions, sweet peppers, and tomatoes.',22,15.95,0,0
+'Steamed Snapper','A steamed whole or filet snapper seasoned with onions, scallion, and garlic and served with carrots and okra.',22,15.95,0,0
+'Snapper in Run-Down','A whole or filet snapper! crisply pan-fried then simmered in a coconut (run-down) sauce.',22,17.95,0,0
+'Escovitched Fish (Spicy)','A whole or filet snapper, crisply pan-fried then topped with carrots., onion and green pepper saut‚ed in a light tangy sauce,',22,15.95,0,0
+'Escovitched Fish (Mild)','A whole or filet snapper, crisply pan-fried then topped with carrots., onion and green pepper saut‚ed in a light tangy sauce,',22,15.95,0,0
+'Curried Shrimp (Spicy)','Shrimp simmered in curly sauce with potatoes, (choose spicy or mild)',22,18.00,0,0
+'Curried Shrimp (Mild)','Shrimp simmered in curly sauce with potatoes, (choose spicy or mild)',22,18.00,0,0
+'Coconut Crusted Salmon','Seasoned pan seared salmon portioned rolled in coconut flakes then baked to perfection',22,18.00,0,0
+'Sata-massa-gana (Spicy)','Mixed vegetables steamed in coconut milk and curry sauce.',23,9.00,0,0
+'Stew Peas (Vegetarian)','Red Kidney beans stewed with herbs and spices and beef chunks.',23,10.50,0,0
+'Ital Stew','Soya chunks (choose chicken or beef flavor) cooked with potato and vegetables.',23,9.00,0,0
+'Roti','Curried potatoes wrapped in Dhalpuri roti skin.',23,6.50,0,0
+'Jamaican Fruit Cake','Jamaican Fruit Cake',11,3.50,0,0
+'Potato Pudding','Potato Pudding',11,3.00,0,0
+'Ice Cream','Ice Cream',11,2.50,0,0
