@@ -20,7 +20,7 @@ print_r($_SESSION);
 echo "</pre>";
 */
 
-$cart = $_SESSION['cart'];
+$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : NULL;
 /*
 //debug messages
 echo "<pre>";	

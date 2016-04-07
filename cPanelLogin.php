@@ -112,13 +112,13 @@ function test_it(f)
 <?php
   
 //operation variables are the operation being performed by cpanel admin
-$op_NewUser      = ($_POST['op_NewUser']  == "NewUser")  ? "TRUE" : "FALSE";
-$op_ChangePW     = ($_POST['op_ChangePW'] == "ChangePW") ? "TRUE" : "FALSE";
-$op_AdminOn      = ($_POST['op_AdminOn']  == "AdminOn")  ? "TRUE" : "FALSE";
-$op_AdminOff     = ($_POST['op_AdminOff'] == "AdminOff") ? "TRUE" : "FALSE";
-$op_Delete       = ($_POST['op_Delete']   == "Delete")   ? "TRUE" : "FALSE";
-$operation_id    = $_POST['operation_id'] ;
-$operation_pwd   = $_POST['operation_pwd'];
+$op_NewUser      = isset($_POST['op_NewUser'])  && ($_POST['op_NewUser']  == "NewUser")  ? "TRUE" : "FALSE";
+$op_ChangePW     = isset($_POST['op_ChangePW']) && ($_POST['op_ChangePW'] == "ChangePW") ? "TRUE" : "FALSE";
+$op_AdminOn      = isset($_POST['op_AdminOn'])  && ($_POST['op_AdminOn']  == "AdminOn")  ? "TRUE" : "FALSE";
+$op_AdminOff     = isset($_POST['op_AdminOff']) && ($_POST['op_AdminOff'] == "AdminOff") ? "TRUE" : "FALSE";
+$op_Delete       = isset($_POST['op_Delete'])   && ($_POST['op_Delete']   == "Delete")   ? "TRUE" : "FALSE";
+$operation_id    = isset($_POST['operation_id'])  ? $_POST['operation_id'] : "" ;
+$operation_pwd   = isset($_POST['operation_pwd']) ? $_POST['operation_pwd'] : "";
 $operation_hash  = md5($operation_pwd);
 $operation_admin = empty($_POST['operation_admin']) ? 'FALSE' : $_POST['operation_admin'];
 $table           = "CPANELUSERS";
