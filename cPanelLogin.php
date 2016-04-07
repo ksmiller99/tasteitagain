@@ -112,13 +112,13 @@ function test_it(f)
 <?php
   
 //operation variables are the operation being performed by cpanel admin
-$op_NewUser      = ($_POST['op_NewUser']  == "NewUser")  ? "TRUE" : "FALSE";
-$op_ChangePW     = ($_POST['op_ChangePW'] == "ChangePW") ? "TRUE" : "FALSE";
-$op_AdminOn      = ($_POST['op_AdminOn']  == "AdminOn")  ? "TRUE" : "FALSE";
-$op_AdminOff     = ($_POST['op_AdminOff'] == "AdminOff") ? "TRUE" : "FALSE";
-$op_Delete       = ($_POST['op_Delete']   == "Delete")   ? "TRUE" : "FALSE";
-$operation_id    = $_POST['operation_id'] ;
-$operation_pwd   = $_POST['operation_pwd'];
+$op_NewUser      = isset($_POST['op_NewUser'])  && ($_POST['op_NewUser']  == "NewUser")  ? "TRUE" : "FALSE";
+$op_ChangePW     = isset($_POST['op_ChangePW']) && ($_POST['op_ChangePW'] == "ChangePW") ? "TRUE" : "FALSE";
+$op_AdminOn      = isset($_POST['op_AdminOn'])  && ($_POST['op_AdminOn']  == "AdminOn")  ? "TRUE" : "FALSE";
+$op_AdminOff     = isset($_POST['op_AdminOff']) && ($_POST['op_AdminOff'] == "AdminOff") ? "TRUE" : "FALSE";
+$op_Delete       = isset($_POST['op_Delete'])   && ($_POST['op_Delete']   == "Delete")   ? "TRUE" : "FALSE";
+$operation_id    = isset($_POST['operation_id'])  ? $_POST['operation_id'] : "" ;
+$operation_pwd   = isset($_POST['operation_pwd']) ? $_POST['operation_pwd'] : "";
 $operation_hash  = md5($operation_pwd);
 $operation_admin = empty($_POST['operation_admin']) ? 'FALSE' : $_POST['operation_admin'];
 $table           = "CPANELUSERS";
@@ -127,6 +127,8 @@ if (!($_SESSION['cpanel_admin']=='1')){
 	echo '<script type="text/javascript"> window.location.replace("home.php") </script>';
 	exit;
 }
+
+$sql = "";
 
 if ($op_ChangePW == "TRUE" && $operation_id != "")
 {
@@ -180,7 +182,7 @@ echo "\n".'<input type="hidden" name="op_NewUser"     value="NewUser">';
 echo "\n".'<tr><td colspan = "2"><input type="button" value="Add ID" onclick="test_it(this.form);" >';
 echo "\n".'<input type="button" value="Homepage" onclick="location.href='."'home.php'".'" >';
 echo "\n".'<input type="button" value="Logout" onclick="location.href='."'cPanelLogout.php'".'" >';
-echo "\n".'<input type="button" value="View Development Log" onclick="window.open('."'http://blue.cs.montclair.edu/~cmpt483a/dev/~DevLog.txt'".');"  >';
+echo "\n".'<input type="button" value="View Development Log" onclick="window.open('."'http://".$_SERVER['SERVER_NAME'] . dirname($_SERVER['REQUEST_URI'])."/~DevLog.txt'".');"  >';
 echo '</td></tr>';
 echo "\n".'</form>';
 echo "\n".'</table>';

@@ -67,19 +67,23 @@ function get_name(f)
 echo "<pre>\n";
 print_r($_POST);
 echo "</pre>\n";
- */
+*/
  
 //operation variables are the operation being performed by admin
-$operation    = $_POST['operation'];     //SQL Operation UPDATE, INSERT, or DELETE
-if ($_POST[updateFlag] == "UPDATE")
-	$operation = "UPDATE";
-$fieldData    = $_POST['fieldData'];    //data of the field being operated on
-$fieldName    = $_POST['fieldName'];    //name of the field being operated on
-$keyFieldData = $_POST['keyFieldData']; //primary key field name of the record being operated on
-$keyFieldName = $_POST['keyFieldName']; //primary key value of the record being operated on
-$table        = "CATEGORIES";
+$operation = (string) filter_input(INPUT_POST,'operation');
+$updateFlag = (string) filter_input(INPUT_POST,'updateFlag');
+$operation = ($updateFlag == "UPDATE") ? "UPDATE" : $operation;
 
-/*echo"operation    $operation   <br />\n";
+$fieldData    = (string) filter_input(INPUT_POST,'fieldData'   );    //data of the field being operated on
+$fieldName    = (string) filter_input(INPUT_POST,'fieldName'   );    //name of the field being operated on
+$keyFieldData = (string) filter_input(INPUT_POST,'keyFieldData');    //primary key field name of the record being operated on
+$keyFieldName = (string) filter_input(INPUT_POST,'keyFieldName');    //primary key value of the record being operated on
+$table = "CATEGORIES";
+$sql = "";
+
+/*
+echo"operation    $operation   <br />\n";
+echo"updateFlag   $updateFlag  <br />\n";
 echo"keyFieldData $keyFieldData<br />\n";
 echo"keyFieldName $keyFieldName<br />\n";
 echo"fieldData    $fieldData   <br />\n";
