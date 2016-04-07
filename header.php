@@ -10,9 +10,9 @@
 .header a:hover {text-decoration:underline;}
 .header a:active {}
 
-.vieworder a:link {color:#FFFF00; text-decoration:; font-weight: bold;}
+.vieworder a:link {color:#FFFF00; text-decoration:none; font-weight: bold;}
 .vieworder a:visited {color:#FFFF00;}
-.vieworder a:hover {text-decoration:; color:#000000}
+.vieworder a:hover {text-decoration:none; color:#000000}
 .vieworder a:active {}
 
 .button_link a:link {text-decoration:none;}
