@@ -7,33 +7,10 @@ if (!@session_start()){
 	die("Cannot start session");
 }
 
-if (isset($_POST['u_id']) && isset($_POST['u_pwd'])){
-	//user has just tried to log in
-	$u_id = $_POST['u_id'];
-	$u_pwd = $_POST['u_pwd'];
-
-
-	$query = "select * from CPANELUSERS where USERID = '$u_id' and PWHASH = '".md5($u_pwd)."'";
-	$result = $mysqli->query($query);
-	if ($result->num_rows){
-		//if they are in the dataabse, register the user id and privleges
-		$_SESSION['valid_user'] = $u_id;
-		$row = $result->fetch_assoc();
-		$_SESSION['cpanel_admin'] = $row['ADMINFLAG'];
-		$result->close();
-	}
-	else{
-		unset($_SESSION['valid_user']);
-		unset($_SESSION['cpanel_admin']);
-		echo '<script type="text/javascript"> alert("Invalid username/password");';
-		echo 'window.history.back(); </script>';
-		exit();
-	}
-}
 ?>
 
 <html><head>
-<title>Edit CPanel Users</title>
+<title>Edit Restaurant Users</title>
 </head>
 
 <body>
@@ -91,7 +68,7 @@ function test_it(f)
 
 </script>
 <?php
-	if (isset($_SESSION['valid_user'])){
+	if (isset($_SESSION['valid_user']) && isset($_SESSION['valid_user'])){
 		//echo 'You are logged in as: '.$_SESSION['valid_user'].'<br/>';
 		//echo '<a href="cPanelLogout.php">Log out</a><br />';
 }else{
@@ -121,13 +98,14 @@ $operation_id    = isset($_POST['operation_id'])  ? $_POST['operation_id'] : "" 
 $operation_pwd   = isset($_POST['operation_pwd']) ? $_POST['operation_pwd'] : "";
 $operation_hash  = md5($operation_pwd);
 $operation_admin = empty($_POST['operation_admin']) ? 'FALSE' : $_POST['operation_admin'];
-$table           = "CPANELUSERS";
+$table           = "USERS";
 
 if (!($_SESSION['cpanel_admin']=='1')){
-	echo '<script type="text/javascript"> window.location.replace("home.php") </script>';
-	exit;
+	echo '<script type="text/javascript"> alert("You do not have sufficient rights for this operation.");';
+	echo 'window.location.replace("index.php"); </script>';
+	exit();
 }
-
+    
 $sql = "";
 
 if ($op_ChangePW == "TRUE" && $operation_id != "")
@@ -172,18 +150,18 @@ echo "<h1>Edit Table: {$table}</h1>";
 echo 'You are logged in as: '.$_SESSION['valid_user'].'<br/>';
 echo "\n".'<table>';
 echo "\n".'<form  action="'.$_SERVER['SCRIPT_NAME'].'"  method="POST"  >';
-echo "\n".'<tr><td>Enter a new userID: </td><td><input type="text" name="operation_id" value="" ></td></tr>';
+echo "\n".'<tr><td>Enter a new restarant user email address: </td><td><input type="text" name="operation_id" value="" ></td></tr>';
 echo "\n".'<tr><td>Enter a password: </td><td><input type="password" name="operation_pwd" value=""></td></tr>';
 echo "\n".'<tr><td>Re-enter password: </td><td><input type="password" name="operation_pwd2" value=""></td></tr>';
-echo "\n".'<tr><td colspan = "2">Admin?'; 
-echo "\n".'<input type="radio" name="operation_admin" value="TRUE"> Y'; 
-echo "\n".'<input type="radio" name="operation_admin" value="FALSE" checked> N</td></tr>'; 
+//echo "\n".'<tr><td colspan = "2">Admin?'; 
+//echo "\n".'<input type="radio" name="operation_admin" value="TRUE"> Y'; 
+//echo "\n".'<input type="radio" name="operation_admin" value="FALSE" checked> N</td></tr>'; 
 echo "\n".'<input type="hidden" name="op_NewUser"     value="NewUser">';
-echo "\n".'<tr><td colspan = "2"><input type="button" value="Add cPanelID" onclick="test_it(this.form);" >';
+echo "\n".'<tr><td colspan = "2"><input type="button" value="Add Restaurant User ID" onclick="test_it(this.form);" >';
 echo "\n".'<input type="button" value="Homepage" onclick="location.href='."'home.php'".'" >';
 echo "\n".'<input type="button" value="Logout" onclick="location.href='."'cPanelLogout.php'".'" >';
-echo "\n".'<input type="button" value="View Development Log" onclick="window.open('."'http://".$_SERVER['SERVER_NAME'] . dirname($_SERVER['REQUEST_URI'])."/~DevLog.txt'".');"  >';
-echo "\n".'<input type="button" value="Add Restaurant Owner" onclick="location.href='."'AddRestOwner.php'".'"  >';
+//echo "\n".'<input type="button" value="View Development Log" onclick="window.open('."'http://".$_SERVER['SERVER_NAME'] . dirname($_SERVER['REQUEST_URI'])."/~DevLog.txt'".');"  >';
+echo "\n".'<input type="button" value="Edit cPanel Users" onclick="location.href='."'cPanelLogin.php'".'"  >';
 echo '</td></tr>';
 echo "\n".'</form>';
 echo "\n".'</table>';
@@ -203,7 +181,7 @@ while($row = $results->fetch_row())
 	//test comment
     foreach($row as $cell)
 	echo "<td>$cell</td>";
-	echo "\n".'<form action="'.$_SERVER['SCRIPT_NAME'].'" method="POST">'."\n";
+        echo "\n".'<form action="'.$_SERVER['SCRIPT_NAME'].'" method="POST">'."\n";
 	echo '<td><input type="button" name="btnChangePW"   value="ChangePW" onclick="get_pw(this.form);"></td>'."\n";
 	echo '<td><input type="submit" name="op_AdminOn"    value="AdminOn" ></td>'."\n";
 	echo '<td><input type="submit" name="op_AdminOff"   value="AdminOff"></td>'."\n";
