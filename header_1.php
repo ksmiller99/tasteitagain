@@ -166,25 +166,21 @@ if (!isset($_SESSION['userCatList'])) {
 </td>
 </tr>
 <?php
-echo '<tr width="100%" height="25px" bgcolor="#40FF00">';
-echo '	<td colspan="2">';
-echo '		<table cellspacing="0" cellpadding="0" width="900" border="0" bgcolor="#04B404">';
-echo '			<tr>';
-echo '				<td align="left">';
-echo '					<span class="welcome">';
-//echo '						&nbsp; <b>- Admin Menu -</b> &nbsp; <span class="button_link"><a href="categoryAdmin.php"><input type="button" value="Categories"></a><a href="productAdmin.php"><input type="button" value="Products"></a></span>';
-echo '                                                  <select name="admin" onchange="location = this.value;">';
-echo '                                                  <option value="">Admin Menu</option>';
-echo '                                                  <option value="categoryAdmin.php">Edit Categories</option>';
-echo '                                                  <option value="productAdmin.php">Edit Products</option>';
-echo '                                                  </select>';
-echo '					</span>';
-echo '				</td>';
-echo '			</tr>';
-echo '		</table>';
-echo '	</td>';
-echo '</tr>';
-
+if (($isAdmin == 'Y')) {
+    echo '<tr width="100%" height="25px" bgcolor="#40FF00">';
+    echo '	<td colspan="2">';
+    echo '		<table cellspacing="0" cellpadding="0" width="900" border="0" bgcolor="#04B404">';
+    echo '			<tr>';
+    echo '				<td align="left">';
+    echo '					<span class="welcome">';
+    echo '						&nbsp; <b>- Admin Menu -</b> &nbsp; <span class="button_link"><a href="categoryAdmin.php"><input type="button" value="Categories"></a><a href="productAdmin.php"><input type="button" value="Products"></a></span>';
+    echo '					</span>';
+    echo '				</td>';
+    echo '			</tr>';
+    echo '		</table>';
+    echo '	</td>';
+    echo '</tr>';
+}
 ?>
 
 <?php

@@ -5,7 +5,8 @@
         <link rel="stylesheet" href="style.css" type="text/css">
 
         <script language="javascript" src="ajax.js"></script>
-
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        
         <script language="JavaScript">
             function edit_field(multi) {
 
@@ -42,7 +43,7 @@
                     }
                 }
 
-                document.getElementById(sid).innerHTML = '<input type=button value=Update onclick=ajax(' + row[0] + ');>'; // Add different color to background
+                document.getElementById(sid).innerHTML = '<input type=button value=Update onclick=ajax("' + row[0] + '");>'; // Add different color to background
             } // end of function
 
         </script>
@@ -107,7 +108,11 @@
             }
 
             $multi_json = json_encode(array($row, $enum_r));
-            echo "<td> <div id=$sid><input type=button value='Edit' onclick=edit_field($multi_json)></div></td></tr>\n";
+            $hid = 'h'.$row[0];
+            $hid_hidden = $hid."_hidden";
+            echo "<td> <div id=$sid><input type=button value='Edit' onclick=edit_field($multi_json)></div>\n";
+            echo "     <div id=$hid><input type=hidden id='$hid_hidden' value=$multi_json></div>\n";
+            echo"</td></tr>";        
             $i = $i + 1;  // To manage row style
         }
         echo "</table>";

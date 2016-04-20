@@ -66,44 +66,52 @@ echo "</pre>\n";
 */
  
 //operation variables are the operation being performed by admin
-$operation    = $_POST['operation'];     //SQL Operation UPDATE, INSERT, or DELETE
-if ($_POST[updateFlag] == "UPDATE")
+$operation = (isset($_POST['operation'])) ? $_POST['operation'] : '' ;   //SQL Operation UPDATE, INSERT, or DELETE
+$updateFlag = (isset($_POST['UPDATE'])) ? $_POST['UPDATE'] : '';
+if ($updateFlag == "UPDATE")
 	$operation = "UPDATE";
 
 //user-input fields for new record
-$pProdID  = $_POST['pProdID'];
-$pCatID   = $_POST['pCatID'];
-$pCatName = $_POST['pCatName'];
-$pName    = $_POST['pName'];
-$pDesc    = $_POST['pDesc'];
-$pPrice   = $_POST['pPrice'];
-$pTax     = (strtoupper($_POST['pTax']== "Y")) ? "1" : "0";
+$pProdID  = isset($_POST['pProdID'] ) ? $_POST['pProdID']   : '' ;
+$pCatID   = isset($_POST['pCatID']  ) ? $_POST['pCatID']    : '' ;
+$pCatName = isset($_POST['pCatName']) ? $_POST['pCatName']  : '' ;
+$pName    = isset($_POST['pName']   ) ? $_POST['pName']     : '' ;
+$pDesc    = isset($_POST['pDesc']   ) ? $_POST['pDesc']     : '' ;
+$pPrice   = isset($_POST['pPrice']  ) ? $_POST['pPrice']    : '' ;
+$pTax     = isset($_POST['pTax']    ) ? $_POST['pTax']      : '' ;
+$pHide    = isset($_POST['pHide']   ) ? $_POST['pHide']     : '' ;
+
+$pTax     = (strtoupper($pTax == "Y")) ? "1" : "0";
 //$pCstart  = !(strtotime($_POST['pCstart'])) ? "NULL" : $_POST['pCstart'];
 //$pCend    = !(strtotime($_POST['pCend'])) ? "NULL" : $_POST['pCend'];
-$pHide    = (strtoupper($_POST['pHide']== "Y")) ? "1" : "0";
+
+$pHide    = (strtoupper($pHide == "Y")) ? "1" : "0";
 
 //filter products table
-$filterCatID = $_POST['filterCatID'];
+$filterCatID = isset($_POST['filterCatID']) ? $_POST['filterCatID']  : '';
 
 //default values when user selected Edit
-$edProdID  = $_POST['edProdID'];
-$edName    = $_POST['edName']; 
-$edDesc    = $_POST['edDesc'];  
-$edCatID   = $_POST['edCatID'];   
-$edCatName = $_POST['edCatName'];   
-$edPrice   = $_POST['edPrice']; 
-$edTax     = ($_POST['edTax'] == "1") ? "Y" : "N";   
+$edProdID  = isset($_POST['edProdID'] ) ? $_POST['edProdID']   : '';
+$edName    = isset($_POST['edName']   ) ? $_POST['edName']     : ''; 
+$edDesc    = isset($_POST['edDesc']   ) ? $_POST['edDesc']     : '';  
+$edCatID   = isset($_POST['edCatID']  ) ? $_POST['edCatID']    : '';  
+$edCatName = isset($_POST['edCatName']) ? $_POST['edCatName']  : '';   
+$edPrice   = isset($_POST['edPrice']  ) ? $_POST['edPrice']    : ''; 
+$edTax     = isset($_POST['edTax']    ) ? $_POST['edTax']      : '';
+$edTax     = ($edTax == "1") ? "Y" : "N";   
 //$edCstart  = (($_POST['edCstart'] == '0000-00-00') ? "" : $_POST['edCstart']);
 //$edCend    = (($_POST['edCend']   == '0000-00-00') ? "" : $_POST['edCend']);
-$edHide    = ($_POST['edHide'] == "1") ? "Y" : "N";  
+
+$edHide = isset($_POST['edHide'])?$_POST['edHide']:'';
+$edHide    = ($edHide == "1") ? "Y" : "N";  
 
 //buttons from each row
-$btnEditProduct   = $_POST['btnEditProduct'];
-$btnDeleteProduct = $_POST['btnDeleteProduct'];
+$btnEditProduct   = isset($_POST['btnEditProduct']  ) ? $_POST['btnEditProduct']    : '';
+$btnDeleteProduct = isset($_POST['btnDeleteProduct']) ? $_POST['btnDeleteProduct']  : '';
 if($btnDeleteProduct == "Delete")
 	$operation = "DELETE";
 
-$posted       = $_POST['posted'];       //user submitted a form
+$posted = isset($_POST['posted']) ? $_POST['posted']  : '';       //user submitted a form
 $table        = "PRODUCTS";
 
 //echo"operation    $operation   <br />\n";
@@ -150,7 +158,8 @@ if ($posted == "Y"){
 		{
 			$sql="DELETE FROM {$table} WHERE PRODID = '{$edProdID}';";
 			//delete $ed*
-			unset($edProdID, $edName, $edDesc, $edCatID, $edCatName, $edPrice, $edTax, $edCstart, $edCend, $edHide);   
+			//unset($edProdID, $edName, $edDesc, $edCatID, $edCatName, $edPrice, $edTax, $edCstart, $edCend, $edHide);   
+			$edProdID = $edName = $edDesc = $edCatID = $edCatName = $edPrice = $edTax = $edCstart = $edCend = $edHide = '';   
 		}else{	
 			if ($operation == "INSERT")
 			{
@@ -170,7 +179,7 @@ if ($posted == "Y"){
 	}
 }
 
-if ($sql != "")
+if (isset($sql) && ($sql != ""))
 {
 	//echo "<br>attempting to run query $sql" . "<br>";
 	if (!($results = $mysqli->query($sql))){
@@ -227,20 +236,21 @@ echo '<table style="border:1px #000000 solid">'."\n";
 				<input type="number" 
 				name="pPrice"  
 				title="price in dollars and cents" 
-				pattern = "^-?\d+(\.\d{2})?$"
-				maxlength="7"
+				pattern = "(\d{3})([\.])(\d{2})"
 				size="7"
+                                min="0"
+                                step=".01"
 				value = "'.$edPrice,'">
 			</td>'."\n";
-		echo '<td>
-				<input type="text" 
-				name="pTax" 
-				title="is product taxable? Y/N" 
-				pattern="Y|N|y|n"
-				maxlength="1"
-				size="1"
-				value = "'.$edTax.'">
-			</td>'."\n";
+//		echo '<td>
+//				<input type="text" 
+//				name="pTax" 
+//				title="is product taxable? Y/N" 
+//				pattern="Y|N|y|n"
+//				maxlength="1"
+//				size="1"
+//				value = "'.$edTax.'">
+//			</td>'."\n";
 /*		echo '<td>
 				<input type="date" 
 				name="pCstart" 

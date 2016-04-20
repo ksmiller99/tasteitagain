@@ -35,6 +35,7 @@ $_SESSION['firstname']  = $row['FIRSTNAME'];
 $_SESSION['isAdmin']    = $row['ADMINFLAG'];
 $_SESSION['isOwner']    = $row['OWNERFLAG'];
 $_SESSION['isCustomer'] = $row['CUSTFLAG'];
+$_SESSION['isEmployee'] = $row['EMPFLAG'];
 $_SESSION['email']      = $email;
 
 /*
@@ -43,11 +44,12 @@ echo "firstname  ".$_SESSION['firstname']."  <br/>";
 echo "isAdmin    ".$_SESSION['isAdmin']."    <br/>";
 echo "isOwner    ".$_SESSION['isOwner']."    <br/>";
 echo "isCustomer ".$_SESSION['isCustomer']." <br/>";
+echo "isEmployee ".$_SESSION['isEmployee']." <br/>";
 echo "email      ".$_SESSION['email']."      <br/>";
 */
 
 echo '<script type="text/javascript">';
-echo 'alert("Login Successful");';
+//echo 'alert("Login Successful");';
 echo 'window.location = '."'".$_SERVER['HTTP_REFERER']."'";
 echo '</script>';
 ?>
