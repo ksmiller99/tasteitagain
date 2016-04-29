@@ -110,11 +110,11 @@ if ($operation == "UPDATE" && $fieldName != "" && $keyFieldName != "" && $keyFie
 
 if ($sql != "")
 {
-	//echo "<br>attempting to run query $sql" . "<br>";
-	if (!($results = $mysqli->query($sql))){
-		echo("Operation query failed.<br />");
-		echo("sql: $sql<br />");
-	}
+    //echo "<br>attempting to run query $sql" . "<br>";
+    if (!($results = $mysqli->query($sql))){
+            echo("Operation query failed.<br />");
+            echo("sql: $sql<br />");
+    }
 }		
 
 // Get whole table

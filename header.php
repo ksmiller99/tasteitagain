@@ -1,5 +1,6 @@
 
 <style type="text/css">
+    /*
     .nav a:link {color:#04B404; text-decoration:none; font-family: arial black; font-weight: bold}
     .nav a:visited {color:#04B404; font-family: arial black; font-weight: bold}
     .nav a:hover {text-decoration:none; color:#000000; font-family: arial black; font-weight: bold}
@@ -19,22 +20,24 @@
     .button_link a:visited {}
     .button_link a:hover {text-decoration:none;}
     .button_link a:active {}
-
+*/
     .welcome {
         color: #FFFF00;
         font-family: verdana;
         font-size: 12px;
     }
+    
+   
 </style>
 
 <?php
-$firstname  = (isset($_SESSION['firstname']))  ? $_SESSION['firstname'] : "Guest";
-$isAdmin    = (isset($_SESSION['isAdmin']))    ? $_SESSION['isAdmin']   : "N";
-$isOwner    = (isset($_SESSION['isOwner']))    ? $_SESSION['isOwner']   : "N";
-$isCustomer = (isset($_SESSION['isCustomer'])) ? $_SESSION['isCustomer']: "N";
-$isEmployee = (isset($_SESSION['isEmployee'])) ? $_SESSION['isEmployee']: "N";
-$email      = (isset($_SESSION['email']))      ? $_SESSION['email']     : "";
-$cart       = (isset($_SESSION['cart']))       ? $_SESSION['cart']      : NULL;
+$firstname = (isset($_SESSION['firstname'])) ? $_SESSION['firstname'] : "Guest";
+$isAdmin = (isset($_SESSION['isAdmin'])) ? $_SESSION['isAdmin'] : "N";
+$isOwner = (isset($_SESSION['isOwner'])) ? $_SESSION['isOwner'] : "N";
+$isCustomer = (isset($_SESSION['isCustomer'])) ? $_SESSION['isCustomer'] : "N";
+$isEmployee = (isset($_SESSION['isEmployee'])) ? $_SESSION['isEmployee'] : "N";
+$email = (isset($_SESSION['email'])) ? $_SESSION['email'] : "";
+$cart = (isset($_SESSION['cart'])) ? $_SESSION['cart'] : NULL;
 
 //unset($_SESSION['userCatList']);
 //get category list for users (Admin users have a real-time category list when administering categories and products)
@@ -73,18 +76,18 @@ if (!isset($_SESSION['userCatList'])) {
         <table cellspacing="0" cellpadding="0" align="center" border="0">
             <tr align="center">
                 <td align="center">
-            <center><font color="#FFFF00" face="arial black"><h1>T a s t e &nbsp; I t &nbsp; A g a i n</h1></font></center>
-    </td>
-</tr>
-<tr>
-    <td>
-<center><font face="fantasy" color="#FFFF00">- F i n e &nbsp; J a m a i c a n &nbsp; D i n i n g -</font></center><br />
-<!--							271 Glenwood Avenue Bloomfield, NJ 07003<br />
-                                                        Phone: (973)743-5140
--->
-</td>
-</tr>
-</table>
+                    <center><font color="#FFFF00" face="arial black"><h1>T a s t e &nbsp; I t &nbsp; A g a i n</h1></font></center>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <center><font face="fantasy" color="#FFFF00">- F i n e &nbsp; J a m a i c a n &nbsp; D i n i n g -</font><br />
+							271 Glenwood Avenue Bloomfield, NJ 07003<br />
+                                                        Phone: (973)743-5140</center>
+
+                </td>
+            </tr>
+        </table>
 <!--</td>
 </tr>-->
 <tr width="100%" height="30px" bgcolor="#FFFF00">
@@ -93,8 +96,9 @@ if (!isset($_SESSION['userCatList'])) {
             <tr>
             <div id='cssmenu'>
                 <ul>
-                    <li class='active '><a href='home.php'><span>HOME</span></a></li>
-                    <li class='has-sub '><a href='menu.php?cat=000000'><span>MENU</span></a>
+                    <li class='active '><a href='home.php'><span>Home</span></a></li>
+                    <li class='has-sub '>
+                        <a href='menu.php?cat=000000'><span>Menu</span></a>
                         <ul>
                             <li><a href="menu.php?cat=000000">All Menu Items </a></li>
                             <?php
@@ -106,8 +110,8 @@ if (!isset($_SESSION['userCatList'])) {
                             ?>									
                         </ul>
                     </li>
-                    <li><a href='merch.php'><span>MERCHANDISE</span></a></li>
-                    <li><a href='info.php'><span>INFORMATION</span></a></li>
+                    <li><a href='merch.php'><span>Merchandise</span></a></li>
+                    <li><a href='info.php'><span>Information</span></a></li>
                 </ul>
             </div>
 </tr>
@@ -166,25 +170,21 @@ if (!isset($_SESSION['userCatList'])) {
 </td>
 </tr>
 <?php
-echo '<tr width="100%" height="25px" bgcolor="#40FF00">';
-echo '	<td colspan="2">';
-echo '		<table cellspacing="0" cellpadding="0" width="900" border="0" bgcolor="#04B404">';
-echo '			<tr>';
-echo '				<td align="left">';
-echo '					<span class="welcome">';
-//echo '						&nbsp; <b>- Admin Menu -</b> &nbsp; <span class="button_link"><a href="categoryAdmin.php"><input type="button" value="Categories"></a><a href="productAdmin.php"><input type="button" value="Products"></a></span>';
-echo '                                                  <select name="admin" onchange="location = this.value;">';
-echo '                                                  <option value="">Admin Menu</option>';
-echo '                                                  <option value="categoryAdmin.php">Edit Categories</option>';
-echo '                                                  <option value="productAdmin.php">Edit Products</option>';
-echo '                                                  </select>';
-echo '					</span>';
-echo '				</td>';
-echo '			</tr>';
-echo '		</table>';
-echo '	</td>';
-echo '</tr>';
-
+if (($isAdmin == 'Y')) {
+    echo '<tr width="100%" height="25px" bgcolor="#40FF00">';
+    echo '	<td colspan="2">';
+    echo '		<table cellspacing="0" cellpadding="0" width="900" border="0" bgcolor="#04B404">';
+    echo '			<tr>';
+    echo '				<td align="left">';
+    echo '					<span class="welcome">';
+    echo '						&nbsp; <b>- Admin Menu -</b> &nbsp; <span class="button_link"><a href="categoryAdmin.php"><input type="button" value="Categories"></a><a href="productAdmin.php"><input type="button" value="Products"></a></span>';
+    echo '					</span>';
+    echo '				</td>';
+    echo '			</tr>';
+    echo '		</table>';
+    echo '	</td>';
+    echo '</tr>';
+}
 ?>
 
 <?php
@@ -195,7 +195,13 @@ if (($isOwner == 'Y')) {
     echo '			<tr>';
     echo '				<td align="left">';
     echo '					<span class="welcome">';
-    echo '						&nbsp; <b>- Owner Menu -</b> &nbsp;<span class="button_link"><a href="vieworders.php"><input type="button" value="View Orders"></a></span>';
+    echo '						&nbsp; <b>- Owner Menu -</b> &nbsp;<span class="button_link">';
+    echo '                                                  <a href="vieworders.php"><input type="button" value="View Orders"></a>';
+    echo '                                                  <a href="userAdmin.php"><input type="button" value="Edit Users"></a>';
+    echo '                                                  <a href="employeeAdmin.php"><input type="button" value="Edit Employees"></a>';
+    echo '                                                  <a href="edit_Timesheets.php"><input type="button" value="Edit Timesheets"></a>';
+    echo '                                                  <a href="timesheet_Report.php"><input type="button" value="Timesheet Report"></a>';
+    echo '                                              </span>';
     echo '					</span>';
     echo '				</td>';
     echo '			</tr>';
@@ -214,7 +220,7 @@ if (($isEmployee == 'Y')) {
     echo '				<td align="left">';
     echo '					<span class="welcome">';
     echo '						&nbsp; <b>- Employee Menu -</b> &nbsp;<span class="button_link"><a href="input_timesheet.php"><input type="button" value="Input Timesheet"></a>';
-    echo '                                              <a href="view_timesheets.php"><input type="button" value="View Timesheet"></a></span>';
+    echo '                                              <a href="view_timesheets.php"><input type="button" value="View Timesheets"></a></span>';
     echo '					</span>';
     echo '				</td>';
     echo '			</tr>';

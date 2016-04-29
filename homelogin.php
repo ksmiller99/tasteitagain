@@ -31,6 +31,7 @@ if (!$row){
 	exit();
 }
 
+$_SESSION['userid']     = $row['USERID'];
 $_SESSION['firstname']  = $row['FIRSTNAME'];
 $_SESSION['isAdmin']    = $row['ADMINFLAG'];
 $_SESSION['isOwner']    = $row['OWNERFLAG'];

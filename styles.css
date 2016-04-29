@@ -65,7 +65,8 @@
 	width:225px;
 }
 #cssmenu > ul li ul li a:link, #cssmenu > ul li ul li a:visited {
-	clear:left;
+	color:#04B404;
+        clear:left;
 	background:#FFFF00;
 	padding:4px 0;
 	width:225px;
@@ -76,8 +77,8 @@
 }
 #cssmenu > ul li ul li:hover a, #cssmenu > ul li ul li a:active, #cssmenu > ul li ul li a:hover {
 	clear:left;
-	background:#FFFF00; /* drop down background color */
-	color:#04B404;
+	color:#FFFF00; 
+	background:#04B404; /* drop down background color */
 	padding:4px 0;
 	width:225px;
 	border:none;

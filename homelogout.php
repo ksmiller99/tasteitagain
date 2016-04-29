@@ -20,6 +20,7 @@ unset($_SESSION['firstname']);
 unset($_SESSION['isAdmin']);    
 unset($_SESSION['isOwner']);    
 unset($_SESSION['isCustomer']); 
+unset($_SESSION['isEmployee']); 
 
 echo '<script type="text/javascript">';
 echo 'alert("You have been logged out.");';

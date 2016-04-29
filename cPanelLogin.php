@@ -183,7 +183,7 @@ echo "\n".'<tr><td colspan = "2"><input type="button" value="Add cPanelID" oncli
 echo "\n".'<input type="button" value="Homepage" onclick="location.href='."'home.php'".'" >';
 echo "\n".'<input type="button" value="Logout" onclick="location.href='."'cPanelLogout.php'".'" >';
 echo "\n".'<input type="button" value="View Development Log" onclick="window.open('."'http://".$_SERVER['SERVER_NAME'] . dirname($_SERVER['REQUEST_URI'])."/~DevLog.txt'".');"  >';
-echo "\n".'<input type="button" value="Add Restaurant Owner" onclick="location.href='."'AddRestOwner.php'".'"  >';
+echo "\n".'<input type="button" value="Add Restaurant Owner" onclick="location.href='."'editUsers.php'".'"  >';
 echo '</td></tr>';
 echo "\n".'</form>';
 echo "\n".'</table>';

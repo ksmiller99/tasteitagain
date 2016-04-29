@@ -270,7 +270,7 @@ function test_it(f)
 												echo'	</td>'."\n";
 												echo'	<td>'."\n";
 												$pKey = 'key-'.$product['PRODID'];
-												$pQty = intval($cart[$product['PRODID']]);
+												$pQty = (isset($cart[$product['PRODID']]))? intval($cart[$product['PRODID']]) : 0;
 												echo'		<center>
 															<input type="text"  
 															name="'.$pKey.'"  
