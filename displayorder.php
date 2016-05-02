@@ -32,7 +32,7 @@ if ($ordUID == ''){
 }
 
 //changes function of button at the bottom
-$calledBy = $_GET['calledBy'];
+$calledBy = isset($_GET['calledBy'])?$_GET['calledBy']:"";
 
 ?>
 

@@ -121,18 +121,18 @@ function viewCart(f){
 
 <html>
 <head>
-	<?php
-		if (isset($_POST['btnCheckOut'])){
-			if($_SESSION['isCustomer'] != 'Y'){
-				echo '<script type="text/javascript"> ';
-				echo 'alert("You must login or create an account before you can checkout.");';
-				echo '</script>';
-			}else{
-				//if "Check Out" button was pressed and cart is not empty, redirect to checkout.php after updating cart
-				echo '<meta HTTP-EQUIV="REFRESH" content="0; url=checkout.php">'."\n";
-			}
-		}
-	?>
+<?php
+if (isset($_POST['btnCheckOut'])){
+    if((!isset($_SESSION['isCustomer']))||($_SESSION['isCustomer'] != 'Y')){
+        echo '<script type="text/javascript"> ';
+        echo 'alert("You must login or create an account before you can checkout.");';
+        echo '</script>';
+    }else{
+        //if "Check Out" button was pressed and cart is not empty, redirect to checkout.php after updating cart
+        echo '<meta HTTP-EQUIV="REFRESH" content="0; url=checkout.php">'."\n";
+    }
+}
+?>
 
 	<title>Taste It Again - View Order</title>
 </head>
@@ -223,7 +223,11 @@ function viewCart(f){
 												echo'	</td>'."\n";
 												echo'	<td>'."\n";
 												$pKey = 'key-'.$product['PRODID'];
-												$pQty = intval($cart[$product['PRODID']]);
+                                                                                                if(!isset($cart[$product['PRODID']])){
+                                                                                                    $pQty = 0;
+                                                                                                }else{
+                                                                                                    $pQty = intval($cart[$product['PRODID']]);
+                                                                                                }
 												echo'		<center>
 															<input type="text"  
 															name="'.$pKey.'"  

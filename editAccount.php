@@ -44,7 +44,7 @@ require "mySQL.php";
 print_r($_POST);
 echo '</pre>';*/
 
-$posted   = $_POST['posted'];
+$posted   = isset($_POST['posted'])?$_POST['posted']:"";
 
 if($posted == "OK"){
 	//user attemped update
@@ -178,7 +178,7 @@ if ($posted == "OK"){
 							<table cellspacing="0" cellpadding="0" width="900" border="0">
 								<tr>
 									<td>
-										<center><h1>Register</h1></center>
+										<center><h1>Register/Edit Account</h1></center>
 									</td>
 								</tr>
 							</table>

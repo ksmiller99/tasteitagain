@@ -55,12 +55,15 @@ if ($_SESSION['isEmployee'] != 'Y') {
                             <td><center><h1>Input Timesheet</h1><center>
                                 <!-- CONTENT -->						
  <!-- Start ---------------------------------------------------------------------------------------------------------->							
- >
+
 <?php
 $userID = $_SESSION['userid'];
+/*
 echo "<pre>\n";   
 print_r($_SESSION);
 echo "</pre>\n";
+ */
+
 $sql = "SELECT CONCAT(LASTNAME,', ',FIRSTNAME, ' ',MINIT) as 'FullName' FROM USERS WHERE (USERID = '$userID')";
 if ($sql != "")
 {
@@ -73,9 +76,11 @@ if ($sql != "")
     
     if($results->num_rows != 0){
         $row = $results->fetch_assoc();
+        /*
         echo '<pre>';
         print_r($row);
         echo '</pre>';
+         */
         $FullName = $row['FullName'];    
     }
     
@@ -105,7 +110,7 @@ if ($sql != "")
     echo '        <td colspan="4" align="center"><input type="button" value="Add Timesheet" onclick="validate(this.form)"></td>';
     echo '    </tr>';
     echo '</table>';
-    echo '</form';
+    echo '</form>   ';
     
 }
 

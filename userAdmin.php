@@ -101,7 +101,7 @@ if ($updateFlag == "UPDATE")
 //user-input fields for new record
 $pUserID      = isset($_POST['pUserID'] )     ? $_POST['pUserID']     : '' ;
 $pPWHash      = isset($_POST['pPWHash'] )     ? $_POST['pPWHash']     : '' ;
-$pFullName   = isset($_POST['pFirstName'])   ? $_POST['pFirstName']  : '' ;
+$pFullName    = isset($_POST['pFirstName'])   ? $_POST['pFirstName']  : '' ;
 $pMiddleInit  = isset($_POST['pMiddleInit'])  ? $_POST['pMiddleInit'] : '' ;
 $pLastName    = isset($_POST['pLastName'])    ? $_POST['pLastName']   : '' ;
 $pEmail       = isset($_POST['pEmail'])       ? $_POST['pEmail']      : '' ;
@@ -352,10 +352,10 @@ while($row = $results->fetch_assoc())
 	echo '<td>'.$name.'</td>'."\n";
 	echo '<td>'.$row['EMAILADD'].'</td>'."\n";
 	echo '<td>'.$row['PHONE'].'</td>'."\n";
-	echo '<td>'.$row['ADMINFLAG'].'</td>'."\n";
-	echo '<td>'.$row['OWNERFLAG'].'</td>'."\n";
-	echo '<td>'.$row['CUSTFLAG'].'</td>'."\n";
-	echo '<td>'.$row['EMPFLAG'].'</td>'."\n";
+	echo '<td style="text-align:center">'.$row['ADMINFLAG'].'</td>'."\n";
+	echo '<td style="text-align:center">'.$row['OWNERFLAG'].'</td>'."\n";
+	echo '<td style="text-align:center">'.$row['CUSTFLAG'].'</td>'."\n";
+	echo '<td style="text-align:center">'.$row['EMPFLAG'].'</td>'."\n";
 	echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="POST">'."\n";
 	echo '<td><input type="submit" name="btnEditUser"      value="Edit"                 ></td>'."\n";
 	echo '<td><input type="submit" name="btnDeleteUser"    value="Delete"               ></td>'."\n";

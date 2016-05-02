@@ -13,7 +13,7 @@ if (!isset($_SESSION['valid_user'])){
 	exit();
 }
 
-$referer = $_SERVER['HTTP_REFERER'];
+$referer = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:"";
 //check if is a customer
 if ($_SESSION['isCustomer'] != 'Y'){
 	echo '<script type="text/javascript"> ';
@@ -63,22 +63,22 @@ require "mySQL.php";
 print_r($_POST);
 echo '</pre>';*/
 
-$posted   = $_POST['posted'];
+$posted   = isset($_POST['posted'])?$_POST['posted']:"";
 
 if($posted == "OK"){
 	//user attemped checkout
-	$userid   = $_POST['userid'];
-	$fName    = $_POST['fName'];
-	$lName    = $_POST['lName'];
-	$address  = $_POST['address'];
-	$address2 = $_POST['address2'];
-	$city     = $_POST['city'];
-	$state    = $_POST['state'];
-	$zipCode  = $_POST['zipCode'];
-	$newemail = $_POST['email'];
-	$phone    = $_POST['phone'];
-	$txtflag  = $_POST['txtflag'];
-	$mailflag = $_POST['mailflag'];
+	$userid   = isset($_POST['userid']   )?$_POST['userid']  :""; 
+	$fName    = isset($_POST['fName']    )?$_POST['fName']   :"";
+	$lName    = isset($_POST['lName']    )?$_POST['lName']   :"";
+	$address  = isset($_POST['address']  )?$_POST['address'] :"";
+	$address2 = isset($_POST['address2'] )?$_POST['address2']:"";
+	$city     = isset($_POST['city']     )?$_POST['city']    :"";
+	$state    = isset($_POST['state']    )?$_POST['state']   :"";
+	$zipCode  = isset($_POST['zipCode']  )?$_POST['zipCode'] :"";
+	$newemail = isset($_POST['email']    )?$_POST['email']   :"";
+	$phone    = isset($_POST['phone']    )?$_POST['phone']   :"";
+	$txtflag  = isset($_POST['txtflag']  )?$_POST['txtflag'] :"";
+	$mailflag = isset($_POST['mailflag'] )?$_POST['mailflag']:"";
 }else{
 	$email = $_SESSION['email'];
 	//load account info from database
@@ -107,7 +107,7 @@ if($posted == "OK"){
 	}
 	$row = $results->fetch_assoc();
 	$address  = $row['ADDLINE1'];
-	$address2 = $row['ADDLINE2	'];
+	$address2 = $row['ADDLINE2'];
 	$city     = $row['CITY'];
 	$state    = $row['STATE'];
 	$zipCode  = $row['ZIP'];

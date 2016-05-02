@@ -150,7 +150,7 @@ if (!isset($_SESSION['userCatList'])) {
                         Password <input type="password" name="password" size="20">
                     </span>
                     <?php
-                    if (!($isCustomer == 'Y')) {
+                    if (!($isCustomer == 'Y') && !($isEmployee == 'Y') && !($isOwner == 'Y') && !($isAdmin == 'Y')) {
                         echo '<input type="submit" value="Login">';
                     } else {
                         echo '<span class="button_link"><a href="homelogout.php"><input type="button" value="Logout"></a></span>';
